@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package order;
+
+import "common.proto";
+
+service OrderService {
+  rpc GetOrder (GetOrderRequest) returns (OrderResponse);
+  rpc GetOrderStatus (GetOrderStatusRequest) returns (OrderStatusResponse);
+}
+
+message GetOrderRequest {
+  string order_id = 1;
+}
+
+message GetOrderStatusRequest {
+  string order_id = 1;
+}
+
+message OrderItemMessage {
+  string product_id = 1;
+  string product_name = 2;
+  int32 quantity = 3;
+  double unit_price = 4;
+  double subtotal = 5;
+}
+
+message OrderResponse {
+  string order_id = 1;
+  string customer_id = 2;
+  string status = 3;
+  double total_amount = 4;
+  string currency = 5;
+  repeated OrderItemMessage items = 6;
+  string created_at = 7;
+  string updated_at = 8;
+  string correlation_id = 9;
+}
+
+message OrderStatusResponse {
+  string order_id = 1;
+  string status = 2;
+  string updated_at = 3;
+}

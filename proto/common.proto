@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package common;
+
+message Empty {}
+
+message StatusResponse {
+  bool success = 1;
+  string message = 2;
+  string code = 3;
+}
+
+message Money {
+  string currency = 1;
+  double amount = 2;
+}
